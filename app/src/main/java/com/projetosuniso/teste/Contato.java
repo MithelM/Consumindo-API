@@ -4,7 +4,7 @@ public class Contato {
 
     private String id;
     private String nome;
-    private String email;
+    private String cpf;
 
     public String getId() {
         return id;
@@ -22,18 +22,18 @@ public class Contato {
         this.nome = nome;
     }
 
-    public String getEmail() {
-        return email;
+    public String getCpf() {
+        return cpf;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
     }
 
     @Override
     public String toString() {
         return "ID: " + getId()
                 + "\nNome: " + getNome()
-                + "\nEmail: " + getEmail();
+                + "\nCpf: " + getCpf();
     }
 }

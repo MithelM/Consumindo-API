@@ -1,5 +1,6 @@
 package com.projetosuniso.teste;
 
+import android.content.Intent;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
@@ -29,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
                     ArrayList<Contato> retorno = new HttpService().execute().get();
 
                     for (Contato contato : retorno) {
-                        resposta.append("\nID: " + contato.getId() + "\nNome: " + contato.getNome() + "\nEmail: " + contato.getEmail());
+                        resposta.append("\nID: " + contato.getId() + "\nNome: " + contato.getNome() + "\ncpf: " + contato.getCpf());
                     }
 
                 } catch (InterruptedException e) {
@@ -39,5 +40,10 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    public void onClickCadastro(View view) {
+        Intent intent = new Intent(this, CadastroActivity.class);
+        startActivity(intent);
     }
 }

@@ -19,11 +19,26 @@
             android:layout_height="wrap_content"
             android:id="@+id/btnMain_buscarCep"
             android:layout_marginBottom="10dp"
+            android:layout_marginRight="10dp"
             android:padding="10dp"
             android:text="Buscar Dados"
             android:textColor="#FDFDFD"
             android:textSize="22sp"
             android:layout_width="wrap_content"/>
+
+        <Button
+                android:id="@+id/btnMain_Cadastro"
+                android:text="Inserir"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onClickCadastro"
+                android:textColor="#FDFDFD"
+                android:textSize="22sp"
+                android:background="@color/colorPrimary"
+                android:layout_marginBottom="10dp"
+                android:padding="10dp"
+
+        />
 
     </LinearLayout>
 

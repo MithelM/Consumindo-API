@@ -1,8 +1,11 @@
 package com.projetosuniso.teste;
 
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.os.AsyncTask;
 import android.service.controls.Control;
 
+import android.widget.Toast;
 import com.google.gson.Gson;
 
 import org.json.JSONArray;
@@ -12,6 +15,7 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
+import java.net.ProtocolException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,14 +23,19 @@ import java.util.Scanner;
 
 public class HttpService extends AsyncTask<Void, Void, ArrayList<Contato>> {
 
+    private ProgressDialog dialog;
+    private Context context;
+
     @Override
     protected ArrayList<Contato> doInBackground(Void... voids) {
         ArrayList<Contato> listContrato = new ArrayList<Contato>();
 
         try {
-            URL url = new URL("https://minebank-api.herokuapp.com/contatos");
+            URL url = new URL("https://minebank-api.herokuapp.com/clientes");
+
 
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+
             connection.setRequestMethod("GET");
             connection.setRequestProperty("Content-type", "application/json");
             connection.setRequestProperty("Accept", "application/json");
@@ -50,15 +59,16 @@ public class HttpService extends AsyncTask<Void, Void, ArrayList<Contato>> {
                 // get employee name and salary
                 String id = contatoJson.getString("id");
                 String nome = contatoJson.getString("nome");
-                String email = contatoJson.getString("email");
+                String cpf = contatoJson.getString("cpf");
 
                 Contato contato = new Contato();
                 contato.setId(id);
                 contato.setNome(nome);
-                contato.setEmail(email);
+                contato.setCpf(cpf);
 
                 listContrato.add(contato);
             }
+
 
         } catch (MalformedURLException e) {
             e.printStackTrace();
@@ -68,6 +78,10 @@ public class HttpService extends AsyncTask<Void, Void, ArrayList<Contato>> {
             e.printStackTrace();
         }
 
+
         return listContrato;
     }
+
+
+
 }
