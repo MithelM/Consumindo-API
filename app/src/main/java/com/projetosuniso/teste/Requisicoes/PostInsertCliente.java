@@ -1,11 +1,11 @@
-package com.projetosuniso.teste;
+package com.projetosuniso.teste.Requisicoes;
 
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
-import android.util.Log;
 import android.widget.Toast;
 import com.google.gson.Gson;
+import com.projetosuniso.teste.Contato;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -13,22 +13,19 @@ import java.io.*;
 import java.net.*;
 import java.util.Iterator;
 
-public class HttpPost extends AsyncTask<Void, Void, Contato> {
+public class PostInsertCliente extends AsyncTask<Void, Void, Contato> {
 
-    private Context context;
+    private final Context context;
     ProgressDialog dialog;
-    private String linkAPI = "";
     String status;
     Contato contato;
 
-    private String nome, cpf;
+    private final String nome, cpf;
 
-    public HttpPost(Context context, String nome, String cpf) {
+    public PostInsertCliente(Context context, String nome, String cpf) {
         this.context = context;
         this.nome = nome;
         this.cpf = cpf;
-
-        this.contato = contato;
     }
 
     @Override
@@ -42,7 +39,7 @@ public class HttpPost extends AsyncTask<Void, Void, Contato> {
     protected Contato doInBackground(Void... voids) {
 
         contato = new Contato();
-        JSONObject object = new JSONObject();;
+        JSONObject object = new JSONObject();
 
         URL url ;
         try {
@@ -76,8 +73,8 @@ public class HttpPost extends AsyncTask<Void, Void, Contato> {
 
                 BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
 
-                StringBuffer sb = new StringBuffer("");
-                String linea = "";
+                StringBuffer sb = new StringBuffer();
+                String linea ;
 
                 while ((linea = in.readLine()) != null) {
 
@@ -110,7 +107,6 @@ public class HttpPost extends AsyncTask<Void, Void, Contato> {
     protected void onPostExecute(Contato contato) {
         super.onPostExecute(contato);
         dialog.dismiss();
-
         Toast.makeText(context, status, Toast.LENGTH_LONG).show();
     }
 

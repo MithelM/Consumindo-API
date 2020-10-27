@@ -1,13 +1,8 @@
-package com.projetosuniso.teste;
+package com.projetosuniso.teste.Requisicoes;
 
-import android.app.ProgressDialog;
-import android.content.Context;
 import android.os.AsyncTask;
-import android.service.controls.Control;
 
-import android.widget.Toast;
-import com.google.gson.Gson;
-
+import com.projetosuniso.teste.Contato;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -15,16 +10,12 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
-import java.net.ProtocolException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class HttpService extends AsyncTask<Void, Void, ArrayList<Contato>> {
 
-    private ProgressDialog dialog;
-    private Context context;
 
     @Override
     protected ArrayList<Contato> doInBackground(Void... voids) {
